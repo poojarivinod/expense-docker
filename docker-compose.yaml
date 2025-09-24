@@ -10,7 +10,7 @@ services:
   # docker run -d --name mysql --network expense -v mysql:/var/lib/mysql mysql:1.0.0
   mysql:
     image: mysql:1.0.0
-    natworks: 
+    networks: 
     - expense
     container_name: mysql #docker compose --> Explore the compose file reference --> Compose Specification repository --> 05-services.md --> ctl F --> container name
     volumes:
