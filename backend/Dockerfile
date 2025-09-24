@@ -1,4 +1,6 @@
-FROM node:20
+#FROM node:20
+# we can take node 20. alpine version to reduce image size # docker hub --> explore --> search as 20.18 
+FROM node:20.18.3-alpine3.21 
 WORKDIR /opt/backend
 # here . dot means current directory, copy the package.json and *.js to /opt/backend
 COPY package.json .
