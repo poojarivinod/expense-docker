@@ -1,0 +1,38 @@
+#docker compose --> Explore the compose file reference --> compose file
+networks:
+  # The presence of these objects is sufficient to define them
+  expense: {} #expense is the network name
+
+volumes:
+  mysql: #mysql is volume name
+
+services:
+  # docker run -d --name mysql --network expense -v mysql:/var/lib/mysql mysql:1.0.0
+  mysql:
+    image: mysql:1.0.0
+    natworks: 
+    - expense
+    container_name: mysql #docker compose --> Explore the compose file reference --> Compose Specification repository --> 05-services.md --> ctl F --> container name
+    volumes:
+    - mysql:/var/lib/mysql # docker hub --> explore --> mysql --> ctl F --> -v
+
+  backend:
+    image: backend:1.0.0
+    networks:
+    - expense
+    container_name: backend
+    # volumes are not required because it is stateless
+    depends_on:
+    - mysql
+
+  frontend:
+    image: frontend:1.0.0
+    networks:
+    - expense
+    container_name: frontend
+    # volumes are not required because it is stateless
+    ports:
+    - 80:80
+    depends_on:
+    - backend
+
