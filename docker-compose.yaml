@@ -3,6 +3,7 @@ networks:
   #expense is the network name
   expense: {} 
 
+# docker volume create mysql
 volumes:
   # mysql is volume name
   mysql: 
@@ -10,7 +11,7 @@ volumes:
 services:
   # docker run -d --name mysql --network expense -v mysql:/var/lib/mysql mysql:1.0.0
   mysql:
-    image: mysql:1.0.0
+    image: poojarivinod1/mysql:1.0.0 #it will take image from docker hub
     networks: 
     - expense
     #docker compose --> Explore the compose file reference --> Compose Specification repository --> 05-services.md --> ctl F --> container name
@@ -20,7 +21,7 @@ services:
     - mysql:/var/lib/mysql 
 
   backend:
-    image: backend:1.0.0
+    image: poojarivinod1/backend:1.0.0 #it will take image from docker hub
     # sh -c means shell command, we are delaying  backend for 5 seconds which is connecting mysql before it is completly up. the run the application which is located at /opt/backend/index.js.
     command: sh -c "sleep 10 && node /opt/backend/index.js"
     networks:
@@ -31,7 +32,7 @@ services:
     - mysql
 
   frontend:
-    image: frontend:1.0.0
+    image: poojarivinod1/frontend:1.0.0 #it will take image from docker hub
     networks:
     - expense
     container_name: frontend
