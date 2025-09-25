@@ -28,6 +28,7 @@ RUN addgroup -S expense && adduser -S expense -G expense && \
 # && \ is to make all the RUN command under one layer image,otherwise craetes seperate layer image for each RUN command, this will reduces the build run time.
     chown -R expense:expense /opt/backend
 # we can use this when we have bridge network
+# mysql is the container name, we don't need give the ip address or domain name as we given previously in the terraorm
 ENV DB_HOST="mysql"
 # we can use this when we have host network
 #ENV DB_HOST="localhost"
