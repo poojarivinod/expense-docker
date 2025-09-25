@@ -12,7 +12,8 @@ RUN chown -R expense:expense /opt/backend
 WORKDIR /opt/backend
 # here . dot means current directory, copy the package.json and *.js to /opt/backend
 COPY package.json .
-COPY *.js .
+# / is used when we have more than one file, otherwise won't develops layer image
+COPY *.js ./ 
 RUN npm install
 # we can use this when we have bridge network
 ENV DB_HOST="mysql"
