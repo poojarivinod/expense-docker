@@ -12,7 +12,7 @@ RUN chown -R expense:expense /opt/backend
 WORKDIR /opt/backend
 # here . dot means current directory, copy the package.json and *.js to /opt/backend
 COPY package.json .
-COPY *.js .
+COPY *.js ./
 RUN npm install
 # we can use this when we have bridge network
 #ENV DB_HOST="mysql" # this change is made to test image layer
